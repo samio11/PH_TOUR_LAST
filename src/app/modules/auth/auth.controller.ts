@@ -79,9 +79,23 @@ const getNewAccessToken = catchAsync(async (req, res, next) => {
   });
 });
 
+const forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+
+  await authServices.forgetPassword(email);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Email Sent Successfully",
+    data: null,
+  });
+});
+
 export const authControllers = {
   credentialsLogin,
   logout,
   googleCallBack,
   getNewAccessToken,
+  forgotPassword,
 };

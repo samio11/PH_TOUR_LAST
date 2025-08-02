@@ -28,4 +28,6 @@ router.get(
   authControllers.googleCallBack
 );
 
+router.post("/forget-password", authControllers.forgotPassword);
+
 export const authRoutes = router;

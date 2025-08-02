@@ -32,4 +32,9 @@ export default {
   CLOUDNARY_NAME: process.env.CLOUDNARY_NAME,
   CLOUDNARY_API_KEY: process.env.CLOUDNARY_API_KEY,
   CLOUDNARY_API_SECRET: process.env.CLOUDNARY_API_SECRET,
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASS: process.env.SMTP_PASS,
+  SMTP_FORM: process.env.SMTP_FORM,
 };

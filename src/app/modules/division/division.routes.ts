@@ -15,4 +15,11 @@ router.post(
 
 router.get("/", divisionControllers.getAllDivisions);
 
+router.patch(
+  "/update/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  multerUpload.single("file"),
+  divisionControllers.updateDivision
+);
+
 export const divisionRoutes = router;

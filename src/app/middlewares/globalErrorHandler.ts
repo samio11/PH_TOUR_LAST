@@ -6,6 +6,7 @@ import { handleZodError } from "../errors/handleZodError";
 import { handleValidationError } from "../errors/handleValidationError";
 import { AppError } from "../errors/AppError";
 import config from "../config";
+import { deleteImageFromCloudinary } from "../config/cloudinary.config";
 
 export const globalErrorHandler = async (
   err: any,
@@ -13,6 +14,14 @@ export const globalErrorHandler = async (
   res: Response,
   next: NextFunction
 ) => {
+  if (req.file) {
+    await deleteImageFromCloudinary(req.file.path);
+  }
+  if (req.files && Array.isArray(req.files) && req.files.length) {
+    const imageUrl = (req.files as Express.Multer.File[]).map((x) => x.path);
+    await Promise.all(imageUrl.map((x) => deleteImageFromCloudinary(x)));
+  }
+
   let statusCode = 500;
   let message = "Something went Wrong";
   let errorSources: TErrorSources = [
